@@ -8,7 +8,8 @@
 ## VERIFICATION PROTOCOL
 - BEFORE taking screenshots for error/blank page:
   - MUST run `curl -k <URL>` to inspect raw HTML.
-  - VERIFY: Components are HTML-rendered (not literal tags).
+  - VERIFY: Components are HTML-rendered (NOT literal tags).
+  - MANDATE: Search raw HTML for the literal string `<ComponentName` (e.g., `<FluentDesignTheme`). If found, it is a NAMESPACE FAILURE.
   - VERIFY: `_Imports.razor` has library namespaces.
 
 ## ARCHITECTURAL CONSTRAINTS
