@@ -29,6 +29,12 @@
   - NEVER guess component behavior or structure based on prior experience.
   - VERIFY "Obsolete" status for all targets before implementation.
 
+## DISTRIBUTED BOUNDARY MANDATE
+- IF implementing API calls in .Client (WASM) project:
+  - MUST NOT use Aspire Service Discovery URLs (e.g., `https+http://apiservice`).
+  - MUST use a server-side API forwarder or absolute URLs reachable by the browser.
+  - RATIONALE: The browser cannot resolve Aspire's internal service discovery scheme.
+
 ## ARCHITECTURAL CONSTRAINTS
 - CSS: MUST link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css` in the host page.
   - RATIONALE: While V5 handles most styles via Web Components, layout components (like FluentLayout) still rely on the scoped CSS bundle for grid definitions.
