@@ -30,7 +30,7 @@
   - VERIFY "Obsolete" status for all targets before implementation.
 
 ## ARCHITECTURAL CONSTRAINTS
-- CSS: Never link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css`.
-  - RATIONALE: V5 handles styles internally via Web Components; global bundle was removed.
+- CSS: MUST link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css` in the host page.
+  - RATIONALE: While V5 handles most styles via Web Components, layout components (like FluentLayout) still rely on the scoped CSS bundle for grid definitions.
 - PLACEMENT: `FluentProviders`/`FluentDesignTheme` MUST be in `MainLayout.razor` (NOT `App.razor`).
   - RATIONALE: Root-level placement in static host can disrupt interactive rendering, causing blank pages.
