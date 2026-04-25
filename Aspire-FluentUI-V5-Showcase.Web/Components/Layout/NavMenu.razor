@@ -1,29 +1,11 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Aspire-FluentUI-V5-Showcase</a>
-    </div>
-</div>
-
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
+<FluentNav Width="250px" Padding="@Padding.All2" Style="height: 100%;">
+    <FluentNavItem Href="" Match="NavLinkMatch.All" IconRest="@(new Icons.Regular.Size20.Home())">
+        Home
+    </FluentNavItem>
+    <FluentNavItem Href="counter" IconRest="@(new Icons.Regular.Size20.AddSquare())">
+        Counter
+    </FluentNavItem>
+    <FluentNavItem Href="weather" IconRest="@(new Icons.Regular.Size20.WeatherSunny())">
+        Weather
+    </FluentNavItem>
+</FluentNav>

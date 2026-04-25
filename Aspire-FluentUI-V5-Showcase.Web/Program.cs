@@ -1,3 +1,4 @@
+using Microsoft.FluentUI.AspNetCore.Components;
 using Aspire_FluentUI_V5_Showcase.Web.Client;
 using Aspire_FluentUI_V5_Showcase.Web.Components;
 
@@ -10,6 +11,8 @@ builder.AddServiceDefaults();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddFluentUIComponents();
 
 builder.Services.AddOutputCache();
 
