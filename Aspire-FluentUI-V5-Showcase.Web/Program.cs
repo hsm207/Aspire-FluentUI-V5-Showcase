@@ -47,4 +47,9 @@ app.MapRazorComponents<App>()
 
 app.MapDefaultEndpoints();
 
+app.MapGet("/weatherforecast", async (WeatherApiClient client) =>
+{
+    return await client.GetWeatherAsync();
+});
+
 app.Run();
