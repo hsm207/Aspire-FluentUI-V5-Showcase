@@ -5,38 +5,26 @@
 
 <PageTitle>Weather</PageTitle>
 
-<h1>Weather</h1>
+<FluentStack Orientation="Orientation.Vertical" VerticalGap="10">
+    <FluentText Typo="Typography.H1">Weather</FluentText>
 
-<p>This component demonstrates showing data loaded from a backend API service.</p>
+    <FluentText>This component demonstrates showing data loaded from a backend API service.</FluentText>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th aria-label="Temperature in Celsius">Temp. (C)</th>
-                <th aria-label="Temperature in Fahrenheit">Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    @if (forecasts == null)
+    {
+        <FluentSpinner />
+        <FluentText><em>Loading...</em></FluentText>
+    }
+    else
+    {
+        <FluentDataGrid Items="@forecasts.AsQueryable()" TGridItem="WeatherForecast" ResizableColumns="true" ShowHover="true">
+            <PropertyColumn Property="@(f => f.Date)" Title="Date" Format="yyyy-MM-dd" Sortable="true" Align="DataGridCellAlignment.Start" />
+            <PropertyColumn Property="@(f => f.TemperatureC)" Title="Temp. (C)" Sortable="true" Align="DataGridCellAlignment.End" />
+            <PropertyColumn Property="@(f => f.TemperatureF)" Title="Temp. (F)" Sortable="true" Align="DataGridCellAlignment.End" />
+            <PropertyColumn Property="@(f => f.Summary)" Title="Summary" Align="DataGridCellAlignment.Start" />
+        </FluentDataGrid>
+    }
+</FluentStack>
 
 @code {
     private WeatherForecast[]? forecasts;
