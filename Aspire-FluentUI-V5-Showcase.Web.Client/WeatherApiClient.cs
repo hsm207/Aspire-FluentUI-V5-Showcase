@@ -1,4 +1,6 @@
-namespace Aspire_FluentUI_V5_Showcase.Web;
+using System.Net.Http.Json;
+
+namespace Aspire_FluentUI_V5_Showcase.Web.Client;
 
 public class WeatherApiClient(HttpClient httpClient)
 {
