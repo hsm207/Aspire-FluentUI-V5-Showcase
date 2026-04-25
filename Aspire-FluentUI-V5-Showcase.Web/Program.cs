@@ -1,4 +1,4 @@
-using Aspire_FluentUI_V5_Showcase.Web;
+using Aspire_FluentUI_V5_Showcase.Web.Client;
 using Aspire_FluentUI_V5_Showcase.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
