@@ -1,0 +1,16 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.2.2">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>ff0ec546-80e4-4fa0-94d8-f61ec8eb9275</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aspire-FluentUI-V5-Showcase.ApiService\Aspire-FluentUI-V5-Showcase.ApiService.csproj" />
+    <ProjectReference Include="..\Aspire-FluentUI-V5-Showcase.Web\Aspire-FluentUI-V5-Showcase.Web.csproj" />
+  </ItemGroup>
+
+</Project>

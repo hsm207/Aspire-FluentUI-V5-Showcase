@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Aspire-FluentUI-V5-Showcase.ApiService/Aspire-FluentUI-V5-Showcase.ApiService.csproj" />
+  <Project Path="Aspire-FluentUI-V5-Showcase.AppHost/Aspire-FluentUI-V5-Showcase.AppHost.csproj" />
+  <Project Path="Aspire-FluentUI-V5-Showcase.ServiceDefaults/Aspire-FluentUI-V5-Showcase.ServiceDefaults.csproj" />
+  <Project Path="Aspire-FluentUI-V5-Showcase.Web.Client/Aspire-FluentUI-V5-Showcase.Web.Client.csproj" />
+  <Project Path="Aspire-FluentUI-V5-Showcase.Web/Aspire-FluentUI-V5-Showcase.Web.csproj" />
+</Solution>
