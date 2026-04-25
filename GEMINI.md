@@ -22,11 +22,12 @@
   - MUST STOP and ask the user to start the host.
   - NEVER attempt `aspire start` or `aspire run` autonomously.
 
-## PRECISION CODING MANDATE
-- BEFORE using properties with enums (e.g., Align, Typo, Appearance):
-  - MUST use `get_enum_values` or `get_component_details` to verify the EXACT V5 name.
-  - NEVER guess enums based on V4 or prior experience.
-  - VERIFY "Obsolete" status for all components before implementation.
+## TOTAL KNOWLEDGE INVALIDATION MANDATE
+- MUST assume ALL internal knowledge of Fluent UI is OUTDATED (V4 bias).
+- BEFORE implementing any component, property, or logic:
+  - MUST validate against the V5 MCP server (`get_component_details`, etc.).
+  - NEVER guess component behavior or structure based on prior experience.
+  - VERIFY "Obsolete" status for all targets before implementation.
 
 ## ARCHITECTURAL CONSTRAINTS
 - CSS: Never link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css`.
