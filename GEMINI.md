@@ -17,6 +17,17 @@
   - MUST verify if a separate NuGet package is required (V5 often splits these).
   - MUST apply documented namespace aliases (e.g., `@using Icons = ...`) in `_Imports.razor`.
 
+## HOST BOUNDARY MANDATE
+- IF AppHost state is 'Unknown' or 'Stopped':
+  - MUST STOP and ask the user to start the host.
+  - NEVER attempt `aspire start` or `aspire run` autonomously.
+
+## PRECISION CODING MANDATE
+- BEFORE using properties with enums (e.g., Align, Typo, Appearance):
+  - MUST use `get_enum_values` or `get_component_details` to verify the EXACT V5 name.
+  - NEVER guess enums based on V4 or prior experience.
+  - VERIFY "Obsolete" status for all components before implementation.
+
 ## ARCHITECTURAL CONSTRAINTS
 - CSS: Never link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css`.
   - RATIONALE: V5 handles styles internally via Web Components; global bundle was removed.
