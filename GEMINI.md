@@ -12,6 +12,11 @@
   - MANDATE: Search raw HTML for the literal string `<ComponentName` (e.g., `<FluentDesignTheme`). If found, it is a NAMESPACE FAILURE.
   - VERIFY: `_Imports.razor` has library namespaces.
 
+## DEPENDENCY PRE-FLIGHT
+- BEFORE using auxiliary components (e.g., Icons, DataGrid):
+  - MUST verify if a separate NuGet package is required (V5 often splits these).
+  - MUST apply documented namespace aliases (e.g., `@using Icons = ...`) in `_Imports.razor`.
+
 ## ARCHITECTURAL CONSTRAINTS
 - CSS: Never link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css`.
   - RATIONALE: V5 handles styles internally via Web Components; global bundle was removed.
