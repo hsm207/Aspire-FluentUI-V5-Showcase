@@ -9,8 +9,7 @@
     <RootNamespace>Aspire_FluentUI_V5_Showcase.Web.Client</RootNamespace>
     <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
-    <DisableScopedCssBundling>true</DisableScopedCssBundling>
-    <ScopedCssEnabled>false</ScopedCssEnabled>
+
   </PropertyGroup>
 
   <ItemGroup>
