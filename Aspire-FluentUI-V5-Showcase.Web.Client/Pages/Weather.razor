@@ -1,7 +1,6 @@
 @page "/weather"
 @rendermode InteractiveAuto
-
-@inject WeatherApiClient WeatherApi
+@using Aspire_FluentUI_V5_Showcase.Web.Client.Models
 
 <PageTitle>Weather</PageTitle>
 
@@ -10,27 +9,20 @@
 
     <FluentText>This component demonstrates showing data loaded from a backend API service.</FluentText>
 
-    @if (forecasts == null)
+    @if (_viewModel == null)
     {
         <FluentSpinner />
         <FluentText><em>Loading...</em></FluentText>
     }
     else
     {
-        <FluentDataGrid Items="@forecasts.AsQueryable()" TGridItem="WeatherForecast" ResizableColumns="true" ShowHover="true">
-            <PropertyColumn Property="@(f => f.Date)" Title="Date" Format="yyyy-MM-dd" Sortable="true" Align="DataGridCellAlignment.Start" />
-            <PropertyColumn Property="@(f => f.TemperatureC)" Title="Temp. (C)" Sortable="true" Align="DataGridCellAlignment.End" />
-            <PropertyColumn Property="@(f => f.TemperatureF)" Title="Temp. (F)" Sortable="true" Align="DataGridCellAlignment.End" />
-            <PropertyColumn Property="@(f => f.Summary)" Title="Summary" Align="DataGridCellAlignment.Start" />
-        </FluentDataGrid>
+        <div class="weather-grid-container">
+            <FluentDataGrid Items="@_viewModel.Forecasts.AsQueryable()" TGridItem="WeatherForecast" ResizableColumns="true" ShowHover="true">
+                <PropertyColumn Property="@(f => f.Date)" Title="Date" Format="yyyy-MM-dd" Sortable="true" Align="DataGridCellAlignment.Start" />
+                <PropertyColumn Property="@(f => f.TemperatureC)" Title="Temp. (C)" Sortable="true" Align="DataGridCellAlignment.End" />
+                <PropertyColumn Property="@(f => f.TemperatureF)" Title="Temp. (F)" Sortable="true" Align="DataGridCellAlignment.End" />
+                <PropertyColumn Property="@(f => f.Summary)" Title="Summary" Align="DataGridCellAlignment.Start" />
+            </FluentDataGrid>
+        </div>
     }
 </FluentStack>
-
-@code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await WeatherApi.GetWeatherAsync();
-    }
-}

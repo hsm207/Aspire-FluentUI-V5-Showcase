@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 
 namespace Aspire_FluentUI_V5_Showcase.Web.Client;
 
-public class WeatherApiClient(HttpClient httpClient)
+public class WeatherApiClient(HttpClient httpClient) : IWeatherClient
 {
     public async Task<WeatherForecast[]> GetWeatherAsync(int maxItems = 10, CancellationToken cancellationToken = default)
     {
