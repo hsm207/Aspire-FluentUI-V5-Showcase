@@ -46,12 +46,27 @@ public partial class Weather
 }
 ```
 
-### 4.3 Styling Strategy: CSS Variables & Design Tokens
-Per [Migration Guide for DesignTheme](/Migration/DesignTheme), we will use V5-standard CSS variables for all component styling, ensuring centralized management and high performance. We will NOT use scoped CSS or ad-hoc style attribute proxies.
+### 4.3 Styling Strategy: Layered Design Tokens
+Per framework analysis, we will adopt a three-layer styling strategy that ensures architectural segregation without sacrificing the framework's native capabilities.
+
+**Layer 1: Design Token Foundation (Global)**
+- Use `:root` CSS variables in `app.css` for application-wide design tokens (colors, spacing scales, etc.).
+- Compose on top of Fluent UI V5's native CSS variables (e.g., `--colorBrandBackground`).
+- Use C# `StylesVariables`, `Margin`, and `Padding` constants for type-safe token references in code.
+
+**Layer 2: Component Parametric API (Per-Component)**
+- Prioritize using `FluentLayout`, `FluentStack`, and component parameters (`Width`, `Padding`, `Margin`) for layout.
+- Use `Style` attributes with CSS variable references (e.g., `Style="width: var(--nav-width)"`) for one-off customization.
+
+**Layer 3: Component-Scoped Layout CSS (Per-Component)**
+- Scoped CSS (`.razor.css`) is acceptable for complex layout rules (pseudo-selectors, media queries).
+- Scoped CSS MUST only **consume** tokens via `var()`, never define them.
+- `::deep` is strictly forbidden.
 
 **Implementation Plan:**
-1. Define custom theme variables in `app.css` using `:root` CSS variables.
-2. Use C# `StylesVariables` constants for consistent token application in partial classes.
+1. Remove `<DisableScopedCssBundling>` and `<ScopedCssEnabled>` from project files to enable Layer 3.
+2. Define custom theme variables in `app.css`.
+3. Apply tokens in components using the appropriate layer.
 ```css
 /* app.css - Centralized Design Tokens */
 :root {
@@ -71,7 +86,7 @@ var borderRadius = StylesVariables.Borders.Radius.Medium;
 ## 6. Behavioral Contracts
 - **Contract 1:** The UI layer MUST NOT contain direct `HttpClient` calls.
 - **Contract 2:** All WASM service calls MUST route through a server-side forwarder.
-- **Contract 3:** Component styles MUST use design tokens via CSS variables, NOT scoped CSS.
+- **Contract 3:** Component styles MUST use design tokens via CSS variables for theming. Component layout MAY use scoped CSS when parametric APIs are insufficient, but scoped CSS MUST only consume tokens, never define them. `::deep` is strictly forbidden.
 
 ## 7. Operational Guardrails
 - **Blast Radius:** If the API Forwarder fails, only the data-grid rendering is affected.
