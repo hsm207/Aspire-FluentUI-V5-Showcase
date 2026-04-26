@@ -4,8 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DisableScopedCssBundling>true</DisableScopedCssBundling>
-    <ScopedCssEnabled>false</ScopedCssEnabled>
+
   </PropertyGroup>
 
   <ItemGroup>
