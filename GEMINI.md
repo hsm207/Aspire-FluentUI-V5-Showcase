@@ -1,3 +1,6 @@
+# Project Identity
+This project is a demonstration of building a .NET Aspire application utilizing Fluent UI Blazor V5 with Interactive Auto render mode. It strictly adheres to Clean Architecture principles while maintaining alignment with Fluent UI's specific component patterns and modern C# best practices.
+
 # Mandatory: Aspire/FluentV5 Protocol
 
 ## REBUILD MANDATE
