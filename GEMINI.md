@@ -1,3 +1,6 @@
+# Project Identity
+This project is a demonstration of building a .NET Aspire application utilizing Fluent UI Blazor V5 with Interactive Auto render mode. It strictly adheres to Clean Architecture principles while maintaining alignment with Fluent UI's specific component patterns and modern C# best practices.
+
 # Mandatory: Aspire/FluentV5 Protocol
 
 ## REBUILD MANDATE
@@ -22,6 +25,13 @@
   - MUST STOP and ask the user to start the host.
   - NEVER attempt `aspire start` or `aspire run` autonomously.
 
+## GLOBAL INTERACTIVITY MANDATE
+- IF implementing Global Interactivity (e.g., `@rendermode="InteractiveAuto"` in `App.razor`):
+  - MUST relocate infrastructure components (`Routes.razor`, `MainLayout.razor`, `NavMenu.razor`) to the `.Client` project.
+  - RATIONALE: The WASM client MUST be able to resolve these types in its own assembly to support hydration.
+  - RATIONALE: Prevents `InvalidOperationException` regarding `RenderFragment` serialization in layouts.
+  - RATIONALE: Ensures `FluentProviders` in `MainLayout` are visible to the interactive circuit.
+
 ## TOTAL KNOWLEDGE INVALIDATION MANDATE
 - MUST assume ALL internal knowledge of Fluent UI is OUTDATED (V4 bias).
 - BEFORE implementing any component, property, or logic:
@@ -36,11 +46,13 @@
   - RATIONALE: The browser cannot resolve Aspire's internal service discovery scheme.
 
 ## ARCHITECTURAL CONSTRAINTS
-- CSS: MUST link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css` in the host page.
+- **SERIALIZATION BOUNDARY**: NEVER apply `@rendermode` directly to a component that receives a `RenderFragment` parameter (like `MainLayout` with `Body`) from a different rendering context.
+  - RATIONALE: `RenderFragment` delegates cannot be serialized to cross the interactive circuit boundary.
+- **PLACEMENT**: `FluentProviders` MUST be in `MainLayout.razor` (NOT `App.razor`).
+  - MANDATE: The `FluentProviders` MUST live within the same interactive circuit as the components using its services. If the layout is static, interactive pages will NOT see the providers (the "Island Problem").
+- **CSS**: MUST link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css` in the host page.
   - RATIONALE: While V5 handles most styles via Web Components, layout components (like FluentLayout) still rely on the scoped CSS bundle for grid definitions.
-- PLACEMENT: `FluentProviders` MUST be in `MainLayout.razor` (NOT `App.razor`).
-  - RATIONALE: Root-level placement in static host can disrupt interactive rendering, causing blank pages.
-- INTERACTIVE AUTO REGISTRATION: IF using `InteractiveAuto` render mode, MUST register services (e.g., HttpClients) in BOTH the `.Web` (Server) and `.Web.Client` (WASM) projects to avoid `InvalidOperationException` during pre-rendering.
+- **INTERACTIVE AUTO REGISTRATION**: IF using `InteractiveAuto` render mode, MUST register services (e.g., HttpClients) in BOTH the `.Web` (Server) and `.Web.Client` (WASM) projects to avoid `InvalidOperationException` during pre-rendering.
 
 ## COMPONENT DESIGN AND STYLING
 - **SCOPED CSS**: MUST NOT disable scoped CSS in application projects. It is essential for component-level layout isolation.
