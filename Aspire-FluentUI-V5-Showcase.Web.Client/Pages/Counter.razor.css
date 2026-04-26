@@ -1,0 +1,11 @@
+.counter-container {
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: var(--neutral-layer-1);
+    box-shadow: var(--elevation-shadow-card-rest);
+}
+
+h1 {
+    color: var(--accent-fill-rest);
+    margin-bottom: 1.5rem;
+}
