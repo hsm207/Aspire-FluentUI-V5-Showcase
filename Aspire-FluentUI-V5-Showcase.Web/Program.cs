@@ -16,7 +16,7 @@ builder.Services.AddFluentUIComponents();
 
 builder.Services.AddOutputCache();
 
-builder.Services.AddHttpClient<WeatherApiClient>(client =>
+builder.Services.AddHttpClient<IWeatherClient, WeatherApiClient>(client =>
     {
         // This URL uses "https+http://" to indicate HTTPS is preferred over HTTP.
         // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
@@ -47,7 +47,7 @@ app.MapRazorComponents<App>()
 
 app.MapDefaultEndpoints();
 
-app.MapGet("/weatherforecast", async (WeatherApiClient client) =>
+app.MapGet("/weatherforecast", async (IWeatherClient client) =>
 {
     return await client.GetWeatherAsync();
 });

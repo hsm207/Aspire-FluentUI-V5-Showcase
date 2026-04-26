@@ -38,5 +38,20 @@
 ## ARCHITECTURAL CONSTRAINTS
 - CSS: MUST link `Microsoft.FluentUI.AspNetCore.Components.bundle.scp.css` in the host page.
   - RATIONALE: While V5 handles most styles via Web Components, layout components (like FluentLayout) still rely on the scoped CSS bundle for grid definitions.
-- PLACEMENT: `FluentProviders`/`FluentDesignTheme` MUST be in `MainLayout.razor` (NOT `App.razor`).
+- PLACEMENT: `FluentProviders` MUST be in `MainLayout.razor` (NOT `App.razor`).
   - RATIONALE: Root-level placement in static host can disrupt interactive rendering, causing blank pages.
+- INTERACTIVE AUTO REGISTRATION: IF using `InteractiveAuto` render mode, MUST register services (e.g., HttpClients) in BOTH the `.Web` (Server) and `.Web.Client` (WASM) projects to avoid `InvalidOperationException` during pre-rendering.
+
+## COMPONENT DESIGN AND STYLING
+- **SCOPED CSS**: MUST NOT disable scoped CSS in application projects. It is essential for component-level layout isolation.
+- **LAYERED STYLING**:
+  - **Layer 1**: Global semantic tokens in `app.css` MUST use generic names (e.g., `--accent-glow`). NEVER use component-specific names (e.g., `--weather-glow`) in global files.
+  - **Layer 2**: Library tokens (e.g., `--accent-fill-rest`) provided by Fluent UI MUST be treated as the immutable design system foundation.
+  - **Layer 3**: Scoped layout CSS in `.razor.css` MUST consume Layer 1 and Layer 2 tokens for theming.
+- **HUMBLE COMPONENT**: MUST separate components into four parts:
+  - `[Name]ViewModel.cs`: Pure data structure.
+  - `[Name].razor.cs`: Partial class for logic and service interaction (The Brain).
+  - `[Name].razor`: Markup only, binding to ViewModel (The Face).
+  - `[Name].razor.css`: Scoped layout rules (The Makeup).
+- **NAVIGATION**: Use `Href="/"` instead of `Href=""` for root links in `FluentNavItem`.
+  - RATIONALE: An empty `Href` in `FluentNavItem` can cause the component to render as a `<button>` instead of an `<a>`, breaking standard navigation expectations.

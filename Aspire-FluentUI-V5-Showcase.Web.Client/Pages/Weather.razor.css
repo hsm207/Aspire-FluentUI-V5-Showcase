@@ -1,0 +1,11 @@
+.weather-grid-container {
+    border: var(--accent-grid-border);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.weather-grid-container:hover {
+    box-shadow: 0 0 15px var(--accent-glow-color);
+}
