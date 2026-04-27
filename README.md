@@ -19,8 +19,7 @@ A sample project demonstrating .NET Aspire integration with Fluent UI Blazor V5 
 
 ## Requirements
 
-- .NET 8.0 or 9.0
-- .NET Aspire Workload
+- .NET 10.0
 
 ## Running the App
 
