@@ -1,0 +1,28 @@
+@page "/space"
+@using Aspire_FluentUI_V5_Showcase.Web.Client.Components.Space
+
+<PageTitle>NASA Space - Deep Cosmos</PageTitle>
+
+<div class="space-page-container">
+    <div class="main-content">
+        <div class="hero-section">
+            <SpaceCard ViewModel="cardViewModel" />
+        </div>
+
+        @if (apodData != null)
+        {
+            <div class="description-section">
+                <div class="description-glass">
+                    <FluentText As="TextTag.H3" 
+                                Style="color: var(--desc-title-color); font-size: var(--desc-title-size); font-weight: var(--desc-title-weight); margin-bottom: 1.5rem;">
+                        Insight into the Cosmos
+                    </FluentText>
+                    <FluentText As="TextTag.Paragraph" 
+                                Style="color: var(--desc-text-color); font-size: var(--desc-text-size); font-weight: var(--desc-text-weight); line-height: 1.8;">
+                        @apodData.Explanation
+                    </FluentText>
+                </div>
+            </div>
+        }
+    </div>
+</div>

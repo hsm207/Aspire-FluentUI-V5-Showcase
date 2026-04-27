@@ -1,0 +1,24 @@
+@namespace Aspire_FluentUI_V5_Showcase.Web.Client.Components.Space
+
+@if (ViewModel == null)
+{
+    <div class="loading-container">
+        <FluentSpinner />
+        <FluentText As="TextTag.Paragraph">Exploring the universe...</FluentText>
+    </div>
+}
+else
+{
+    <div class="space-card-wrapper">
+        <FluentCard Class="space-card" Appearance="CardAppearance.Subtle">
+            <div class="image-wrapper">
+                <img src="@ViewModel.ImageUrl" alt="@ViewModel.Title" />
+                <div class="overlay-glass">
+                    <p class="date">@ViewModel.Date.ToString("MMMM dd, yyyy")</p>
+                    <h1 class="title">@ViewModel.Title</h1>
+                </div>
+            </div>
+        </FluentCard>
+    </div>
+}
+
