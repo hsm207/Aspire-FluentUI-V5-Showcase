@@ -1,12 +1,13 @@
 @inherits LayoutComponentBase
 
-<FluentLayout>
+<FluentLayout Class="app-layout">
     <FluentLayoutItem Area="@LayoutArea.Header">
-        <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentStack VerticalAlignment="VerticalAlignment.Center" Style="padding: 0 1rem;">
             <FluentLayoutHamburger />
-            <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+            <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;">
+                <FluentIcon Value="@(new Icons.Regular.Size24.Rocket())" Color="Color.Primary" />
                 <FluentText Weight="TextWeight.Bold" Size="TextSize.Size400">
-                    Aspire Fluent UI Showcase
+                    Aspire Showcase
                 </FluentText>
             </a>
         </FluentStack>
@@ -17,11 +18,18 @@
     </FluentLayoutItem>
 
     <FluentLayoutItem Area="@LayoutArea.Content">
-        @Body
+        <div style="height: 100%; overflow: auto;">
+            @Body
+        </div>
     </FluentLayoutItem>
 
     <FluentLayoutItem Area="@LayoutArea.Footer">
-        Powered by Microsoft Fluent UI Blazor V5 @DateTime.Now.Year
+        <FluentDivider Style="margin-bottom: 0.5rem;" />
+        <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
+            <FluentText Size="TextSize.Size300">
+                Crafted with love using Fluent UI V5 • @DateTime.Now.Year
+            </FluentText>
+        </FluentStack>
     </FluentLayoutItem>
 </FluentLayout>
 

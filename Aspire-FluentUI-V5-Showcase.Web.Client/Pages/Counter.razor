@@ -6,7 +6,7 @@
     <FluentStack Orientation="Orientation.Vertical" VerticalGap="10">
         <FluentText As="@TextTag.H1" Size="TextSize.Size700">Counter</FluentText>
 
-        <FluentLabel role="status">Current count: @ViewModel.CurrentCount</FluentLabel>
+        <FluentText As="TextTag.Paragraph" role="status">Current count: @ViewModel.CurrentCount</FluentText>
 
         <FluentButton Appearance="ButtonAppearance.Primary" 
                       OnClick="IncrementCountAsync"

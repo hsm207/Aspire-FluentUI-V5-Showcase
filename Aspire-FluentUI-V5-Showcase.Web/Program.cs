@@ -23,6 +23,16 @@ builder.Services.AddHttpClient<IWeatherClient, WeatherApiClient>(client =>
         client.BaseAddress = new("https+http://apiservice");
     });
 
+builder.Services.AddHttpClient<Aspire_FluentUI_V5_Showcase.Web.Client.Services.SpaceClient>(client =>
+{
+    client.BaseAddress = new Uri("https://api.nasa.gov/");
+}).AddStandardResilienceHandler(options =>
+{
+    options.Retry.MaxRetryAttempts = 1;
+    options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(1);
+    options.TotalRequestTimeout.Timeout = TimeSpan.FromSeconds(2);
+});
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
